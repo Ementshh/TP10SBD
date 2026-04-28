@@ -1,65 +1,114 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+
+const response = {
+  page: 1,
+  results: [
+    {
+      userId: 1,
+      id: 1,
+      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      image: "https://picsum.photos/500",
+    },
+    {
+      userId: 1,
+      id: 2,
+      title: "qui est esse",
+      body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
+      image: "https://picsum.photos/500",
+    },
+    {
+      userId: 1,
+      id: 3,
+      title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+      body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
+      image: "https://picsum.photos/500",
+    },
+    {
+      userId: 1,
+      id: 4,
+      title: "eum et est occaecati",
+      body: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
+      image: "https://picsum.photos/500",
+    },
+    {
+      userId: 1,
+      id: 5,
+      title: "nesciunt quas odio",
+      body: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
+      image: "https://picsum.photos/500",
+    },
+  ],
+};
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (count !== 0 && count % 10 === 0) {
+      alert("Angka habis dibagi 10");
+    }
+  }, [count]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white text-slate-900">
+      <nav className="flex items-center justify-between border-b border-slate-200 px-6 py-4 sm:px-10">
+        <div className="text-lg font-bold">Nama</div>
+        <div className="flex gap-6 text-sm font-medium">
+          <a href="#home">Home</a>
+          <a href="#cards">Cards</a>
+          <a href="#counter">Counter</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      <section id="home" className="px-6 py-10 sm:px-10">
+        <h1 className="text-2xl font-bold">TP Modul 10</h1>
+      </section>
+
+      <section id="cards" className="px-6 py-6 sm:px-10">
+        <h2 className="mb-4 text-xl font-semibold">Cards</h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {response.results.map((item) => (
+            <article key={item.id} className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
+              <div className="p-4">
+                <h3 className="text-base font-semibold capitalize">{item.title}</h3>
+                <p className="mt-2 whitespace-pre-line text-sm text-slate-600">{item.body}</p>
+              </div>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section id="counter" className="px-6 py-10 sm:px-10">
+        <h2 className="mb-4 text-xl font-semibold">Counter Demo</h2>
+        <div className="inline-flex items-center gap-4 rounded-lg border border-slate-200 px-4 py-3">
+          <button
+            type="button"
+            onClick={() => setCount((current) => current - 1)}
+            className="rounded-md border border-slate-300 px-4 py-2"
+          >
+            -
+          </button>
+          <span className="min-w-12 text-center text-2xl font-bold">{count}</span>
+          <button
+            type="button"
+            onClick={() => setCount((current) => current + 1)}
+            className="rounded-md border border-slate-300 px-4 py-2"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            onClick={() => setCount(0)}
+            className="rounded-md border border-slate-300 px-4 py-2"
+          >
+            Reset
+          </button>
+        </div>
+      </section>
+    </main>
   );
 }
