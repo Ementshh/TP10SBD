@@ -55,7 +55,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <nav className="flex items-center justify-between border-b border-slate-200 px-6 py-4 sm:px-10">
-        <div className="text-lg font-bold">Nama</div>
+        <div className="text-lg font-bold">Clement</div>
         <div className="flex gap-6 text-sm font-medium">
           <a href="#home">Home</a>
           <a href="#cards">Cards</a>
